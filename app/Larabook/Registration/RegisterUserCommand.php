@@ -8,12 +8,12 @@ class RegisterUserCommand {
 
 	public $password;
 
-	function __construct($username, $email, $password){
-
+	function __construct($username, $email, $password)
+	{
 		$this->username = $username;
 		$this->email = $email;
 		$this->password = $password;
-
 	}
+
 
 }
