@@ -1,4 +1,4 @@
-<?php
+<?php namespace Larabook\Users\User;
 
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
@@ -30,5 +30,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+
+	/**
+	 * Register a new user
+	 *
+	 * @param $username
+	 * @param $email
+	 * @param $password
+	 * @return static
+	 */
+	 
+	public static function register($username, $email, $password)
+	{
+		$user = new static(compact('username','email','password'));
+		// raise an event
+	}
 
 }

@@ -3,6 +3,13 @@
 use Laracasts\Commander\CommandHandler;
 
 class RegisterUserCommandHandler implements CommandHandler{
+
+	protected $repository;
+
+	function __construct(UserRepository $repository)
+	{
+		$this->repository = $repository;
+	}
 	
 	/*
 	 * Handle the command
@@ -12,8 +19,14 @@ class RegisterUserCommandHandler implements CommandHandler{
 	 */
 	public function handle($command)
 	{
-		$user = User::create(
-			Input::only('username','email','password')
+		$user = User::register(
+			$command->username, 
+			$command->email,
+			$command->password
 		);
+		 
+		$this->repository->save($user);
+
+		return $user;
 	}
 }
